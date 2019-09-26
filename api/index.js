@@ -6,6 +6,7 @@ const app= express();
 
 //Import routers 
 const authRouter= require("./routes/auth");
+const category =require("./routes/categories");
 
 const db_url=`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-e0g2p.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 mongoose.connect(db_url,{useNewUrlParser: true,useUnifiedTopology: true } )
@@ -19,5 +20,6 @@ app.use(express.json())
 
 //Route middlewares
 app.use("/api/user",authRouter);
+app.use("/api/category",category);
 
 app.listen(3002,()=>{ console.log("app runing on Port 3002");});
